@@ -1,7 +1,10 @@
 from django.urls import path, include
-from .views import BooksListApiView, BooksDetailApiView  # BooksListViewSet,
+from .views import BooksListApiView, BooksDetailApiView
 from rest_framework import routers
-
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 
 # router = routers.DefaultRouter()
