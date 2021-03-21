@@ -1,5 +1,9 @@
-from django.urls import path, include
+from django.urls import path
+from .views import BooksListApiView
+from rest_framework import routers
+
+app_name = 'books'
 
 urlpatterns = [
-    path('api/', include('books.api.urls')),
+   path('', BooksListApiView.as_view()),
 ]
