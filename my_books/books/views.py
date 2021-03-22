@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
-from rest_framework.mixins import CreateModelMixin
+from rest_framework.mixins import CreateModelMixin, ListModelMixin
 from rest_framework.viewsets import GenericViewSet
+from rest_framework import filters, generics
 
 from rest_framework.response import Response
 from rest_framework import permissions, status
@@ -11,25 +12,32 @@ from my_books.books.models import Books, Category
 from my_books.books.serializers import BooksSerializer, CategorySerializer
 
 
-class CategoryViewSet(CreateModelMixin, GenericViewSet):
+class CategoryViewSet(CreateModelMixin, ListModelMixin,GenericViewSet):
     '''
-        Create an Category
+        Create an Category or List all of categorys of the system
     '''
     permission_classes=[IsAuthenticated]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+    
 
-class BooksListApiView(APIView):
+class BooksListApiView(generics.ListAPIView, APIView):
 
     permission_classes = [IsAuthenticated]
+    serializer_class = BooksSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'author','category']
+
+    def get_queryset(self):
+        queryset = Books.objects.filter(user=self.request.user.id)
 
     def get(self, request, format=None):
         '''
         List all the books for a requested user
+        currently authenticated.
         '''
         books = Books.objects.filter(user=request.user.id)
         serializer = BooksSerializer(books, many=True)
-        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
@@ -53,6 +61,13 @@ class BooksListApiView(APIView):
 
 
 class BooksDetailApiView(APIView):
+    """
+    View to list all books of a currente User in the system.
+
+    * Requires token authentication.
+    * Only users authenticated are able to access this view.
+    """
+
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, book_id, user_id):
