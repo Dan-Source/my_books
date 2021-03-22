@@ -23,6 +23,12 @@ class CategoryViewSet(CreateModelMixin, ListModelMixin,GenericViewSet):
 
 class BooksListApiView(generics.ListAPIView, APIView):
 
+    """
+    Returns a list of the Books of the current user.
+
+    """
+
+
     permission_classes = [IsAuthenticated]
     serializer_class = BooksSerializer
     filter_backends = [filters.SearchFilter]
