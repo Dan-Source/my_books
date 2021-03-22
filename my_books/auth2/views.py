@@ -6,7 +6,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from my_books.auth2.serializers import (
-    MyTokenObtainPairSerializer, RegisterSerializer
+    MyTokenObtainPairSerializer, 
+    RegisterSerializer
 )
 
 

@@ -19,9 +19,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # DRF APPS
     'rest_framework',
     'django_filters',
     'drf_yasg',
+    # MY APPS
     'my_books.books',
     'my_books.auth2'
 ]
@@ -59,8 +61,8 @@ WSGI_APPLICATION = 'my_books.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': config("SQL_ENGINE"),
+        'NAME': BASE_DIR / config("SQL_NAME_DATABASE"),
     }
 }
 

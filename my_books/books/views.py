@@ -1,13 +1,23 @@
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.mixins import CreateModelMixin
+from rest_framework.viewsets import GenericViewSet
+
 from rest_framework.response import Response
 from rest_framework import permissions, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from my_books.books.models import Books
-from my_books.books.serializers import BooksSerializer
+from my_books.books.models import Books, Category
+from my_books.books.serializers import BooksSerializer, CategorySerializer
 
+
+class CategoryViewSet(CreateModelMixin, GenericViewSet):
+    '''
+        Create an Category
+    '''
+    permission_classes=[IsAuthenticated]
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
 
 class BooksListApiView(APIView):
 
@@ -42,18 +52,8 @@ class BooksListApiView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# class BooksListViewSet(ModelViewSet):
-#     serializer_class = BooksSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-    
-#     def get_queryset(self):
-#         current_user = self.request.user
-#         return Books.objects.filter(user=current_user)
-
-
 class BooksDetailApiView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    #http_method_names = ['get','put','head']
 
     def get_object(self, book_id, user_id):
         '''
