@@ -3,7 +3,6 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.response import Response
 from rest_framework import permissions, status
 from rest_framework.permissions import IsAuthenticated
-
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from my_books.books.models import Books
@@ -11,6 +10,7 @@ from my_books.books.serializers import BooksSerializer
 
 
 class BooksListApiView(APIView):
+
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
