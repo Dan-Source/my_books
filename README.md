@@ -70,5 +70,10 @@ armazenar a informações sensivéis da aplicação
   - Abra a sua url_base/redoc/ (ex.: http://127.0.0.1:8000/redoc/)
 
 ### Ou importe o arquivo do Insominia:
- 
+  - Insomnia_MY_BOOK_JSON
 
+## Fique atento a autenticação:
+
+O servidor gera um token que certifica a identidade do usuário.
+Assim o cliente pode enviar o token de volta para o servidor como meio que 
+verificar a requisição.
