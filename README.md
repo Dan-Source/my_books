@@ -14,11 +14,9 @@ servir um Web Service.
   - Um usuário pode acessar e editar apenas os seus livros.
   - Cada livro está relacionado a uma ou nenhuma categoria.
   - É necessário Autenticação para interagir com as API.
-  - O projeto deve fornece uma forma de executar o CRUD para os livros e as categorias. 
-  - O projecto possui recursos como filtragem de resultados e similares.
+  - O projeto fornece uma forma de executar o CRUD para os livros e as categorias. 
+  - O projeto possui recursos como filtragem de resultados e similares.
 
-
-Como consumir esta API para enviar mensagens.
 
 ## Primeiros Passos
 
@@ -59,7 +57,7 @@ armazenar a informações sensivéis da aplicação
 ## Consulte os seguintes urls:
 
 ### APIroot
-  - Abra a sua url_base/ (ex.: http://127.0.0.1:8000/register/)
+  - Abra a sua url_base/ (ex.: http://127.0.0.1:8000/auth/login/)
   - Ná pagina 'APIRoot', poderá ser visualizado os endpoints da API.
 
 ### Utilizando Swagger:
