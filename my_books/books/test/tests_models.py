@@ -35,6 +35,7 @@ class BooksModelTest(TestCase):
             pages=777,
             category=self.category
         )
+    
     def test_create(self):
         self.assertTrue(Books.objects.exists())
     

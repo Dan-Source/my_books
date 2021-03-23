@@ -28,7 +28,6 @@ class BooksListApiView(generics.ListAPIView, APIView):
 
     """
 
-
     permission_classes = [IsAuthenticated]
     serializer_class = BooksSerializer
     filter_backends = [filters.SearchFilter]
@@ -139,5 +138,5 @@ class BooksDetailApiView(APIView):
         book_instance.delete()
         return Response(
             {"res": "Object deleted!"},
-            status=status.HTTP_200_OK
+            status=status.HTTP_204_NO_CONTENT
         )
