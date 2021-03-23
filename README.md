@@ -1,12 +1,12 @@
 # My Books Project
 
 
-##  TECNOLOGIA
+##  Tecnologias
 
 Este projeto Django utiliza a biblioteca Django Rest Framework para
 servir um Web Service.
 
-## ESCOPO DO PROJETO
+## Escopo do Projeto
 
 
   - Este projeto deve permitir que usuários registrem o seu acervo pessoal de livros. 
